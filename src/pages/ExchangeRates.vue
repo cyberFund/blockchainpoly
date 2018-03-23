@@ -1,7 +1,5 @@
 <template>
   <div id="exchange-rates">
-    <h1>BLOCKCHAINPOLY EXCHANGE RATES</h1>
-
     <table>
       <thead>
       <tr>
@@ -39,7 +37,9 @@
     </table>
 
     <div class="controls">
-      <button @click="submit">Save</button>
+      <button @click="add">Add</button>
+      <button @click="undo">Undo</button>
+      <button @click="reset">Reset</button>
     </div>
   </div>
 </template>
@@ -50,29 +50,56 @@
     data() {
       return {
         form: {},
-        rates: [
+        rates: [],
+      };
+    },
+    mounted() {
+      if (localStorage.getItem('rates')) {
+        this.rates = JSON.parse(localStorage.getItem('rates'));
+      } else {
+        this.setDefault();
+      }
+    },
+    methods: {
+      reset() {
+        /* eslint-disable no-alert */
+        if (!confirm('Are you sure?')) return;
+
+        this.setDefault();
+      },
+      setDefault() {
+        this.rates = [
           {
             gbg: 1,
             btc: 300000,
             eth: 15000,
           },
-        ],
-      };
-    },
-    methods: {
-      submit() {
+        ];
+
+        this.save();
+      },
+      undo() {
+        /* eslint-disable no-alert */
+        if (!confirm('Are you sure?')) return;
+
+        this.rates.splice(-1, 1);
+        this.save();
+      },
+      add() {
         this.rates.push({
-          gbg: this.add('gbg'),
-          btc: this.add('btc'),
-          eth: this.add('eth'),
-          ico1: this.add('ico1'),
-          ico2: this.add('ico2'),
-          ico3: this.add('ico3'),
-          ico4: this.add('ico4'),
+          gbg: this.calc('gbg'),
+          btc: this.calc('btc'),
+          eth: this.calc('eth'),
+          ico1: this.calc('ico1'),
+          ico2: this.calc('ico2'),
+          ico3: this.calc('ico3'),
+          ico4: this.calc('ico4'),
         });
+
+        this.save();
         this.form = {};
       },
-      add(name) {
+      calc(name) {
         const last = this.rates[this.rates.length - 1];
         let value = last[name];
 
@@ -88,33 +115,9 @@
 
         return value;
       },
+      save() {
+        localStorage.setItem('rates', JSON.stringify(this.rates));
+      },
     },
   };
 </script>
-
-<style scoped>
-  h1 {
-    text-align: center;
-  }
-
-  .controls {
-    text-align: center;
-    margin-top: 10px;
-    font-size: x-large;
-  }
-
-  table {
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-    font-size: x-large;
-  }
-
-  table, th, td {
-    border: 3px solid black;
-  }
-
-  th, td {
-    padding: 5px;
-  }
-</style>
