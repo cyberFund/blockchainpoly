@@ -8,6 +8,8 @@
     </nav>
 
     <router-view></router-view>
+
+    <div class="footer">Created by <a href="https://github.com/cyberFund/blockchainpoly">cyber•Fund</a></div>
   </div>
 </template>
 
@@ -32,6 +34,11 @@
 
   nav a.router-link-active {
     text-decoration: underline;
+  }
+
+  .footer {
+    margin-top: 30px;
+    text-align: center;
   }
 </style>
 
