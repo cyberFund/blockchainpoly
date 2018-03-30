@@ -2,7 +2,7 @@
 
 https://blockchainpoly.s3.eu-central-1.amazonaws.com/index.html
 
-https://gateway.ipfs.io/ipfs/QmYVDRMcVeYJqXK8bkB4KJXziXjdm8rCTheV49cVGFxZBv
+https://gateway.ipfs.io/ipfs/Qmcc11dgomF9PFT16NRYMMjhSe5f6oF3cRfD88n7eUFzDB
 
 ### Deploy
 
