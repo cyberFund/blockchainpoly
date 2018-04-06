@@ -9,7 +9,10 @@
 
     <router-view></router-view>
 
-    <div class="footer">Created by <a href="https://github.com/cyberFund/blockchainpoly">cyber•Fund</a></div>
+    <div class="footer">
+      Created by <a href="https://github.com/cyberFund/blockchainpoly">cyber•Fund</a>
+      <a href="static/Print.zip">Printed version</a>
+    </div>
   </div>
 </template>
 
